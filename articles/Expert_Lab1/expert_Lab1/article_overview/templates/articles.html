@@ -1,0 +1,17 @@
+
+    {% extends "master.html" %}
+    {% block title %}
+    Article Overview
+    {% endblock %}
+
+    
+    {% block content %}
+    <h1>Article Overview</h1>
+    <a href="/">Logout</a>
+    <ul>
+      {% for x in articles %}
+      <li><a href="details/{{x.id}}"> {{x.title}}</a></li>
+      {% endfor %}
+    </ul>
+    {% endblock %}
+

@@ -1,0 +1,18 @@
+{% extends "master.html" %} 
+
+
+{% block title %}
+Details about 
+{{article.title}}{% endblock %} 
+
+{% block content %}
+<h1>Article Overview</h1>
+<ul>
+  <li>{{ article.title }}</li>
+  <p>{{ article.author }}</p>
+  <p>{{article.date}}</p>
+  <p>{{ article.source }}</p>
+  <p>{{ article.body }}</p>
+</ul>
+<a href="/article_overview">Back to overview</a>
+{% endblock %}
