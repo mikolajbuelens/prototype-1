@@ -1,0 +1,78 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  /* background-color: rgb(241, 241, 241); */
+  background-image: url("static/images/newspapers.jpg");
+  margin: 0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.signIn {
+  /* brown/beige classic gradient */
+  background: radial-gradient(
+    859px at 10% 20%,
+    rgb(245, 220, 154) 0%,
+    rgb(164, 78, 51) 90%
+  );
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  /* width: 50%; */
+  height: 500px;
+}
+
+.form-container {
+  background-color: white;
+  border-radius: 0px 10px 10px 0px;
+  padding: 50px;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: rgb(202, 147, 131);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  width: 100%;
+  transition: all 0.5s ease 0s;
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(164, 78, 51);
+}
+
+.signInBtn {
+  background-color: transparent;
+  color: white;
+  border: white solid 1px;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 50px;
+}

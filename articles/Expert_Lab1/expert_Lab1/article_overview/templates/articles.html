@@ -1,17 +1,43 @@
+{% extends "master.html" %} {% load static %} {% block title %} Article Overview
+{% endblock %}
+<link rel="stylesheet" href="{% static 'index.css' %}" />
 
-    {% extends "master.html" %}
-    {% block title %}
-    Article Overview
-    {% endblock %}
+{% block content %}
+<h1>Article Overview</h1>
+<a href="/">Logout</a>
+{% comment %} {% with greetings=1 %}
+<h1>{{greetings}}</h1>
 
-    
-    {% block content %}
-    <h1>Article Overview</h1>
-    <a href="/">Logout</a>
-    <ul>
-      {% for x in articles %}
-      <li><a href="details/{{x.id}}"> {{x.title}}</a></li>
-      {% endfor %}
-    </ul>
-    {% endblock %}
+{% if greetings == 1 %}
+<h1>Hello</h1>
+{% else %}
+<h1>Bye</h1>
+{% endif %} {% endwith %} {% endcomment %}
 
+<ul>
+  {% for x in articles %}
+  <li><a href="details/{{x.id}}"> {{x.title}}</a></li>
+  {% endfor %}
+</ul>
+
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Date</th>
+    <th>Source</th>
+    <th>Body</th>
+  </tr>
+  {% for x in articles %}
+
+  <tr>
+    <td>{{x.title}}</td>
+    <td>{{x.author}}</td>
+    <td>{{x.date}}</td>
+    <td>{{x.source}}</td>
+    <td>{{x.body}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

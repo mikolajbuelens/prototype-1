@@ -1,14 +1,42 @@
 {% extends "master.html" %}
+{% load static %}
 {% block title %}
 Login
 {% endblock %}
 {% block content %}
-<h1>Login</h1>
+ {% comment %} <h1>Login</h1> {% endcomment %}
+ <style>
+  body {
+      background-image: url("{% static 'newspapers.jpg' %}");
+      background-size: cover; 
+      height: 100vh; 
+      display: flex;
+      justify-content: center; 
+      align-items: center; 
+backdrop-filter: blur(5px);
+  }
+</style>
+ <div class="center">
+ <div class="flex-row">
+<div class="signIn">
+  <h1>Welcome Back</h1>
+  <a class="signInBtn">Sign in</a>
+</div>
+<div class="form-container">
+  <h1>Create account</h1>
 <form action="/login" method="post">
-  <label for="username">Username:</label><br>
-  <input type="text" id="username" name="username"><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password"><br><br>
+  {% comment %} <label for="username">Username:</label><br>
+  <label for="email">Email:</label><br> {% endcomment %}
+  <input type="text" id="username" placeholder="Name" name="username"><br>
+
+  <input type="text" id="email" placeholder='Email' name="email"><br>
+  {% comment %} <input type="text" id="username" name="username"><br> {% endcomment %}
+  {% comment %} <label for="password">Password:</label><br> {% endcomment %}
+  <input type="password" id="password" name="password" placeholder="Password"><br><br>
   <input type="submit" value="Submit">
-</form>
+</form> 
+</div>
+</div>
+</div>
+
 {% endblock %}
