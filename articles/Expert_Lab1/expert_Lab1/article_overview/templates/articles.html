@@ -1,10 +1,17 @@
 {% extends "master.html" %} {% load static %} {% block title %} Article Overview
+
 {% endblock %}
+{% load static %}
+
 <link rel="stylesheet" href="{% static 'index.css' %}" />
+{% comment %} <script src="{% static 'index.js' %}"></script> {% endcomment %}
 
 {% block content %}
-<h1>Article Overview</h1>
-<a href="/">Logout</a>
+<div class="center">
+<h1 class="page-title">Article Overview</h1>
+</div>
+
+{% comment %} <a href="/">Logout</a> {% endcomment %}
 {% comment %} {% with greetings=1 %}
 <h1>{{greetings}}</h1>
 
@@ -13,30 +20,55 @@
 {% else %}
 <h1>Bye</h1>
 {% endif %} {% endwith %} {% endcomment %}
-
+{% comment %} {% include 'article_container.html' %} {% endcomment %}
+{% include 'Article_interface.html'%}
 <ul>
   {% for x in articles %}
   <li><a href="details/{{x.id}}"> {{x.title}}</a></li>
   {% endfor %}
 </ul>
+<div class="article-wrapper">
+  {% for x in articles %}
+  <a href="details/{{x.id}}" class="article-container">
+    <h2>{{x.title}}</h2>
+    {% comment %} <p>{{x.author}}</p> {% endcomment %}
+    <p>{{x.date}}</p>
+    {% comment %} <p>{{x.source}}</p> {% endcomment %}
+    {% comment %} <p>{{x.body}}</p> {% endcomment %}
+    {% comment %} <p>{{x.image}}</p> {% endcomment %}
+    <img src="{% static x.image %}" alt="image">
+  </a>
+  
+  {% endfor %} 
+  <a onclick="openForm()" class="add-article open-form">
+      <img src="{% static 'icons/add.svg' %}" alt="add" class="add-icon">
+  </a>
+  
+  <form action="{% url 'article_overview'%}" methode="POST" id="addForm">
+  
+    {{ form }}
+    
+  </form>
+  </div>
+  
 
 <table border="1">
-  <tr>
+  {% comment %} <tr>
     <th>Title</th>
     <th>Author</th>
     <th>Date</th>
     <th>Source</th>
     <th>Body</th>
-  </tr>
+  </tr> {% endcomment %}
   {% for x in articles %}
 
-  <tr>
+  {% comment %} <tr>
     <td>{{x.title}}</td>
     <td>{{x.author}}</td>
     <td>{{x.date}}</td>
     <td>{{x.source}}</td>
     <td>{{x.body}}</td>
-  </tr>
+  </tr> {% endcomment %}
   {% endfor %}
 </table>
 

@@ -1,0 +1,12 @@
+{% extends "master.html" %} {% load static %}
+
+{% block title %} Add article
+
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'article.create'%}" methode="post"> {% csrf_token %}
+    {{ form }}
+    <button type="submit">Add article</button>
+</form>
+{% endblock %}

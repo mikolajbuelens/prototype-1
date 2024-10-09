@@ -8,6 +8,7 @@ class Article(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
     source= models.CharField(null=True, max_length=100) 
+    image = models.ImageField(upload_to='images/', default='images/default.jpg')
 
     def __str__(self):
         return self.title

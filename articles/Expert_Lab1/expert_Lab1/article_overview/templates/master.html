@@ -1,12 +1,22 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href="{% static 'index.css' %}">
+  <link rel="stylesheet" href="{% static 'index.css' %}" />
+  <link rel="stylesheet" href="{% static 'reset.css' %}" />
   <head>
-        <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
+<script src="{% static 'index.js' %}"></script>
+
   </head>
   <body>
-    {% block content %} {% endblock %} 
-    
+    {% block content %} {% endblock %}
+    <style>
+      body {
+        background-image: url("{% static 'newspapers.jpg' %}");
+        background-size: cover;
+        height: 100vh;
+        backdrop-filter: blur(5px);
+      }
+    </style>
   </body>
 </html>
