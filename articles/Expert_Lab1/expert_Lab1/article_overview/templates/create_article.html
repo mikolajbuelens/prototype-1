@@ -5,8 +5,15 @@
 {% endblock %}
 
 {% block content %}
-<form action="{% url 'article.create'%}" methode="post"> {% csrf_token %}
+<div class="center">
+    
+<form class="create-form" action="{% url 'article.create'%}" method="POST"> {% csrf_token %}
+    <h1 class="page-title">Add article</h1>
     {{ form }}
     <button type="submit">Add article</button>
+    <a href="{% url 'article_overview' %}">Cancel</a>
 </form>
+
+</div>
+
 {% endblock %}

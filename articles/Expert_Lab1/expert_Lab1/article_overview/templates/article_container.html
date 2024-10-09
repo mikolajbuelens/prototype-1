@@ -1,27 +1,30 @@
-
-{% load static %}
-
-{% comment %} <h1>TEST ARTICLE_CONTAINER.HTML</h1> {% endcomment %}
+{% load static %} {% comment %}
+<h1>TEST ARTICLE_CONTAINER.HTML</h1>
+{% endcomment %}
 <div class="article-wrapper">
-{% for x in articles %}
-<a href="details/{{x.id}}" class="article-container">
-  <h2>{{x.title}}</h2>
-  {% comment %} <p>{{x.author}}</p> {% endcomment %}
-  <p>{{x.date}}</p>
-  {% comment %} <p>{{x.source}}</p> {% endcomment %}
-  {% comment %} <p>{{x.body}}</p> {% endcomment %}
-  {% comment %} <p>{{x.image}}</p> {% endcomment %}
-  <img src="{% static x.image %}" alt="image">
-</a>
+  {% for x in articles %}
+  <a href="details/{{x.id}}" class="article-container">
+    <h2>{{x.title}}</h2>
+    {% comment %}
+    <p>{{x.author}}</p>
+    {% endcomment %}
+    <p>{{x.date}}</p>
+    {% comment %}
+    <p>{{x.source}}</p>
+    {% endcomment %} {% comment %}
+    <p>{{x.body}}</p>
+    {% endcomment %} {% comment %}
+    <p>{{x.image}}</p>
+    {% endcomment %}
+    <img src="{% static x.image %}" alt="image" />
+  </a>
 
-{% endfor %} 
-<a onclick="openForm()" class="add-article open-form">
-    <img src="{% static 'icons/add.svg' %}" alt="add" class="add-icon">
-</a>
+  {% endfor %}
+  <a href="/create_article" onclick="openForm()" class="add-article open-form">
+    <img src="{% static 'icons/add.svg' %}" alt="add" class="add-icon" />
+  </a>
 
-<form action="{% url 'article_overview'%}" methode="POST" id="addForm">
-
-  {{ form }}
-  
-</form>
+  <form action="{% url 'article_overview'%}" methode="POST" id="addForm">
+    {{ form }}
+  </form>
 </div>

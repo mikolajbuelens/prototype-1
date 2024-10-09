@@ -53,7 +53,7 @@ class CreateArticleView(CreateView):
     model = Article
     fields = ['title', 'body', 'author', 'image']
     template_name = 'create_article.html'
-    success_url = 'article_overview/'
+    success_url = '/article.overview/'
         
         
         
