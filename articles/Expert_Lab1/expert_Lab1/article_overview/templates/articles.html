@@ -1,27 +1,28 @@
 {% extends "master.html" %} {% load static %} {% block title %} Article Overview
-
-{% endblock %}
-{% load static %}
+{% endblock %} {% load static %}
 
 <link rel="stylesheet" href="{% static 'index.css' %}" />
-{% comment %} <script src="{% static 'index.js' %}"></script> {% endcomment %}
-
-{% block content %}
+{% comment %}
+<script src="{% static 'index.js' %}"></script>
+{% endcomment %} {% block content %}
 <div class="center">
-<h1 class="page-title">Article Overview</h1>
+  <h1 class="page-title">Article Overview</h1>
 </div>
 
-{% comment %} <a href="/">Logout</a> {% endcomment %}
-{% comment %} {% with greetings=1 %}
+<h1>Welcome,{{user}}</h1>
+{% comment %} <a href="/login">Login</a>
+
+{% comment %} <a href="/">Logout</a> {% endcomment %} {% comment %} {% with
+greetings=1 %}
 <h1>{{greetings}}</h1>
 
 {% if greetings == 1 %}
 <h1>Hello</h1>
 {% else %}
 <h1>Bye</h1>
-{% endif %} {% endwith %} {% endcomment %}
-{% comment %} {% include 'article_container.html' %} {% endcomment %}
-{% include 'Article_interface.html'%}
+{% endif %} {% endwith %} {% endcomment %} {% comment %} {% include
+'article_container.html' %} {% endcomment %}
+ {% include 'Article_interface.html'%}
 <ul>
   {% for x in articles %}
   <li><a href="details/{{x.id}}"> {{x.title}}</a></li>
@@ -30,46 +31,57 @@
 <div class="article-wrapper">
   {% for x in articles %}
   <a href="details/{{x.id}}" class="article-container">
+  
     <h2>{{x.title}}</h2>
-    {% comment %} <p>{{x.author}}</p> {% endcomment %}
+    {% comment %}
+    <p>{{x.author}}</p>
+    {% endcomment %}
     <p>{{x.date}}</p>
-    {% comment %} <p>{{x.source}}</p> {% endcomment %}
-    {% comment %} <p>{{x.body}}</p> {% endcomment %}
-    {% comment %} <p>{{x.image}}</p> {% endcomment %}
-    <img src="{% static x.image %}" alt="image">
+
+    {% comment %}
+    <p>{{x.source}}</p>
+    {% endcomment %} {% comment %}
+    <p>{{x.body}}</p>
+    {% endcomment %} {% comment %}
+    <p>{{x.image}}</p>
+    {% endcomment %}
+    <img src="/media/{{ x.image }}" alt="{{x.image.url}}" />
   </a>
-  
-  {% endfor %} 
+  {% endfor %}
+
+
   <a href="/article/new" onclick="openForm()" class="add-article open-form">
-      <img src="{% static 'icons/add.svg' %}" alt="add" class="add-icon">
+    <img src="{% static 'icons/add.svg' %}" alt="add" class="add-icon" />
   </a>
-  
-  <form action="{% url 'article_overview'%}" methode="POST" id="addForm">
-  
-    {{ form }}
-    
+
+  <form
+    action="{% url 'article_overview'%}"
+    method="POST"
+    id="addForm"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %} {{ form }}
   </form>
-  </div>
-  
+</div>
 
 <table border="1">
-  {% comment %} <tr>
+  {% comment %}
+  <tr>
     <th>Title</th>
     <th>Author</th>
     <th>Date</th>
     <th>Source</th>
     <th>Body</th>
-  </tr> {% endcomment %}
-  {% for x in articles %}
-
-  {% comment %} <tr>
+  </tr>
+  {% endcomment %} {% for x in articles %} {% comment %}
+  <tr>
     <td>{{x.title}}</td>
     <td>{{x.author}}</td>
     <td>{{x.date}}</td>
     <td>{{x.source}}</td>
     <td>{{x.body}}</td>
-  </tr> {% endcomment %}
-  {% endfor %}
+  </tr>
+  {% endcomment %} {% endfor %}
 </table>
 
 {% endblock %}

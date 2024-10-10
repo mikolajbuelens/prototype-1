@@ -34,6 +34,12 @@ body {
   height: 500px;
 }
 
+.logoutBtn{
+  all: unset;
+  cursor: pointer;
+
+}
+
 .form-container {
   background-color: white;
   border-radius: 0px 10px 10px 0px;

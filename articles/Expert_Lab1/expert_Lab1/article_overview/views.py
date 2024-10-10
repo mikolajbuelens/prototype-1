@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from django import forms
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Note:Python is an MVT framework
@@ -21,15 +22,12 @@ from django.urls import reverse_lazy
 class HomeView(CreateView):
      template_name = 'main.html'
      form_class = UserCreationForm
-     succes_url = '/login'
+     success_url = '/article_overview'
 
-     
-    #  Trying to remove helper text (error: NoneType object is not subscriptable)
-    #  class Meta:
-    #     model = User
-    #     fields = ['username', 'password1', 'password2']
-    #  def __init__(self, *args, **kwargs):
-    #   super().__init__(*args, **kwargs)
+
+class LogoutPage(LogoutView):
+    template_name = 'logout.html'
+
       
     
 class ArticleView(TemplateView):
@@ -38,8 +36,8 @@ class ArticleView(TemplateView):
 class loginInterfaceView(LoginView):
     template_name = 'login.html'
     
-    class logoutInterfaceView(LogoutView):
-        template_name = 'main.html'
+    # class logoutInterfaceView(LogoutView):
+    #     template_name = 'main.html'
         
         
         # class ArticleContainerView(CreateView):
@@ -49,12 +47,21 @@ class loginInterfaceView(LoginView):
         #     success_url = '/articles.html'
             
             
-class CreateArticleView(CreateView):
+# @login_required
+class CreateArticleView(LoginRequiredMixin, CreateView):
     model = Article
-    fields = ['title', 'body', 'author', 'image']
+    fields = ['title', 'body', 'author', 'image', 'source']
+    login_url = "/login/"
     template_name = 'create_article.html'
-    success_url = '/article.overview/'
-        
+    redirect_field_name = "redirect_to"
+    # success_url = '/article_overview'
+
+#         from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+# class MyView(LoginRequiredMixin, View):
+#     login_url = "/login/"
+#     redirect_field_name = "redirect_to"
         
         
 
@@ -90,10 +97,12 @@ def article_overview(request):
     
     articles = Article.objects.all().values()
     data = Article.objects.filter(author__startswith='R').values()
+    user = request.user
     template = loader.get_template('articles.html')
     context = {
     'articles': articles,
     'data' : data,
+    'user': user,
 }
     return HttpResponse(template.render(context, request))
 

@@ -1,7 +1,12 @@
    
     {% load static %}	
-   
-   <a href="/" class="btn logoutBtn">
-
+   <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+   <button type="submit" href="/logout/" class="btn logoutBtn">
 <img src="{% static 'icons/logout.svg' %}" alt="logout" class="logoutIcon">
+
+   </button>
+
+   </form>
+
    </a>
