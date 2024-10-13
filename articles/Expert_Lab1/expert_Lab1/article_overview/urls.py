@@ -14,6 +14,7 @@ urlpatterns = [
     path('logout/', views.LogoutPage.as_view(next_page="home"), name='logout'),
     path('my_articles', views.MyArticlesView.as_view(), name='my_articles'),
     path('article_overview/delete/<int:pk>/', views.DeleteArticleView.as_view(), name='article.delete'),
+    path('article_overview/update/<int:pk>/', views.UpdateArticleView.as_view(), name='article.update'),
 ]
 
 if settings.DEBUG:

@@ -31,9 +31,9 @@ My Articles
         <td>
 
             
-            <button class="edit-btn" >
+            <a href="{% url 'article.update' article.id %}" class="edit-btn" >
                 <img src="{% static 'icons/edit.svg' %}" alt="edit" class="edit-icon" />
-            </button>
+            </a>
 
             <form action="{% url 'article.delete' article.id %}" method="POST">
                 {% csrf_token %}

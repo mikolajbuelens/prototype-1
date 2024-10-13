@@ -12,6 +12,7 @@ from django import forms
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import DeleteView
+from django.views.generic.edit import UpdateView
 
 
 # Note:Python is an MVT framework
@@ -61,11 +62,48 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+    
+    
+class UpdateArticleView(LoginRequiredMixin, UpdateView):
+    model = Article
+    fields = ['title', 'body', 'image', 'source']
+    login_url = "/login"
+    template_name = 'edit_article.html'
+    success_url = reverse_lazy('my_articles')
+    redirect_field_name = "redirect_to"
+  
+    def get_queryset(self):
+        return super().get_queryset().filter(author=self.request.user) 
+    
+    
+    def form_valid(self, form):
+        # form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['article'] = self.get_object()
+        return context
+    
+    def get_object(self):
+        id_ = self.kwargs.get("pk")
+        return Article.objects.get(id=id_)
+    
+    def get_success_url(self):
+        return reverse_lazy('my_articles')
+    
+    def get_initial(self):
+        return {
+            'title': self.get_object().title,
+            'body': self.get_object().body,
+            'image': self.get_object().image,
+            'source': self.get_object().source,
+        }
   
 
 class DeleteArticleView(LoginRequiredMixin, DeleteView):
     model = Article
-    template_name = 'delete_article.html'
+    # template_name = 'delete_article.html'
     login_url = "/login"
     redirect_field_name = "redirect_to"
     success_url = reverse_lazy('my_articles')
@@ -88,7 +126,7 @@ def article_overview(request):
     
     
     articles = Article.objects.all().values()
-    data = Article.objects.filter(author__startswith='R').values()
+    data = Article.objects.all()
     if request.user.is_authenticated:
         user = f'Welcome, {request.user}'
     else:
