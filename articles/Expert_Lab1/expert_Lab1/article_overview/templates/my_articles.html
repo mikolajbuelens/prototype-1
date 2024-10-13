@@ -29,12 +29,21 @@ My Articles
         <td>{{ article.source }}</td>
         <td>{{ article.body|truncatechars:50 }}</td>
         <td>
+
+            
             <button class="edit-btn" >
                 <img src="{% static 'icons/edit.svg' %}" alt="edit" class="edit-icon" />
             </button>
-            <button class="delete-btn">
+
+            <form action="{% url 'article.delete' article.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="article_id" value="{{ article.id }}">
+                <button class="delete-btn">
+                    <img src="{% static 'icons/delete.svg' %}" alt="delete" class="delete-icon" />
+                </button>
+            {% comment %} <button class="delete-btn">
                 <img src="{% static 'icons/delete.svg' %}" alt="delete" class="delete-icon" />
-            </button>
+            </button> {% endcomment %}
         </td>
     </tr>
         {% endfor %}

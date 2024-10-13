@@ -13,6 +13,7 @@ urlpatterns = [
     path('article/new', views.CreateArticleView.as_view(), name='article.create'),
     path('logout/', views.LogoutPage.as_view(next_page="home"), name='logout'),
     path('my_articles', views.MyArticlesView.as_view(), name='my_articles'),
+    path('article_overview/delete/<int:pk>/', views.DeleteArticleView.as_view(), name='article.delete'),
 ]
 
 if settings.DEBUG:

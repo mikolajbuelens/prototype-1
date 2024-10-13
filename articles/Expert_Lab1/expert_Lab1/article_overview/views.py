@@ -48,7 +48,8 @@ class MyArticlesView(TemplateView):
     
 
         
-# @login_required
+# CRUD Actions (Create, Read, Update, Delete)
+        
 class CreateArticleView(LoginRequiredMixin, CreateView):
     model = Article
     fields = ['title', 'body', 'image', 'source']
@@ -67,9 +68,11 @@ class DeleteArticleView(LoginRequiredMixin, DeleteView):
     template_name = 'delete_article.html'
     login_url = "/login"
     redirect_field_name = "redirect_to"
+    success_url = reverse_lazy('my_articles')
     
+    # get all articles that belong to the logged in user
     def get_queryset(self):
-        return super().get_queryset().filter(author=self.request.user)
+        return super().get_queryset().filter(author=self.request.user) 
 
 
 class ArticleContainerView(TemplateView):
