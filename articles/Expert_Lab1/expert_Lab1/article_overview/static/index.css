@@ -406,7 +406,7 @@ td{
   object-fit: cover;
 }
 
-table button{
+table button, table a{
   padding: 8px;
   margin: 8px 0;
   border: none;
@@ -416,11 +416,12 @@ table button{
 
 }
 
-table  button img{
+table  button img, table a img{
   width: 30px !important;
 }
 
 .edit-btn{
+  display: block;
   background-color: rgb(43, 103, 255);
   color: white;
   width: fit-content;
@@ -432,3 +433,16 @@ table  button img{
   color: white;
 }
 
+.delete-btn:hover{
+  background-color: rgb(255, 0, 0);
+}
+
+.edit-btn:hover{
+  background-color: rgb(0, 0, 255);
+}
+
+
+.delete-edit{
+  display: flex;
+  justify-content: space-between;
+}

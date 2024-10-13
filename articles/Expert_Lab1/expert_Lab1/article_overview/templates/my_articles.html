@@ -28,7 +28,7 @@ My Articles
         <td>{{ article.date }}</td>
         <td>{{ article.source }}</td>
         <td>{{ article.body|truncatechars:50 }}</td>
-        <td>
+        <td class="delete-edit">
 
             
             <a href="{% url 'article.update' article.id %}" class="edit-btn" >
@@ -41,9 +41,7 @@ My Articles
                 <button class="delete-btn">
                     <img src="{% static 'icons/delete.svg' %}" alt="delete" class="delete-icon" />
                 </button>
-            {% comment %} <button class="delete-btn">
-                <img src="{% static 'icons/delete.svg' %}" alt="delete" class="delete-icon" />
-            </button> {% endcomment %}
+          
         </td>
     </tr>
         {% endfor %}
