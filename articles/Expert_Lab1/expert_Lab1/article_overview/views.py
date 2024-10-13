@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import DeleteView
 
 
 # Note:Python is an MVT framework
@@ -22,7 +23,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class HomeView(CreateView):
      template_name = 'main.html'
      form_class = UserCreationForm
-     success_url = '/article_overview'
+     success_url = '/login'
 
 
 class LogoutPage(LogoutView):
@@ -36,51 +37,39 @@ class ArticleView(TemplateView):
 class loginInterfaceView(LoginView):
     template_name = 'login.html'
     
-    # class logoutInterfaceView(LogoutView):
-    #     template_name = 'main.html'
+class MyArticlesView(TemplateView):
+    template_name = 'my_articles.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['articles'] = Article.objects.filter(author=self.request.user)
+        return context
+    
+
         
-        
-        # class ArticleContainerView(CreateView):
-        #     model = Article
-        #     fields = ['title', 'body', 'author']
-        #     template_name = 'article_container.html'
-        #     success_url = '/articles.html'
-            
-            
 # @login_required
 class CreateArticleView(LoginRequiredMixin, CreateView):
     model = Article
-    fields = ['title', 'body', 'author', 'image', 'source']
+    fields = ['title', 'body', 'image', 'source']
     login_url = "/login"
     template_name = 'create_article.html'
+    success_url = reverse_lazy('article_overview')
     redirect_field_name = "redirect_to"
-    # success_url = '/article_overview'
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+  
 
-#         from django.contrib.auth.mixins import LoginRequiredMixin
-
-
-# class MyView(LoginRequiredMixin, View):
-#     login_url = "/login/"
-#     redirect_field_name = "redirect_to"
-        
-        
-
-# class ArticleView(TemplateView):
-#     template_name = 'articles.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['articles'] = Article.objects.all()
-#         return context
-
-
-# def login (request):
-#     template = loader.get_template('login.html')
-#     return HttpResponse(template.render({}, request))
-
-# @login_required(login_url='/')
-
-
+class DeleteArticleView(LoginRequiredMixin, DeleteView):
+    model = Article
+    template_name = 'delete_article.html'
+    login_url = "/login"
+    redirect_field_name = "redirect_to"
+    
+    def get_queryset(self):
+        return super().get_queryset().filter(author=self.request.user)
 
 
 class ArticleContainerView(TemplateView):

@@ -12,6 +12,7 @@ urlpatterns = [
     path('article_overview/details/<int:id>/', views.details, name='details'),
     path('article/new', views.CreateArticleView.as_view(), name='article.create'),
     path('logout/', views.LogoutPage.as_view(next_page="home"), name='logout'),
+    path('my_articles', views.MyArticlesView.as_view(), name='my_articles'),
 ]
 
 if settings.DEBUG:

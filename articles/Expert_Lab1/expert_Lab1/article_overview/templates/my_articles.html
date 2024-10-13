@@ -1,0 +1,46 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+My Articles
+{% endblock %}
+
+{% block content %}
+<div class="center">
+    <div class="table-wrapper">
+        <a class="secondary-btn" href="/article_overview"> &lt Back to overview</a>
+<a  class="secondary-btn" href="{% url 'article.create' %}">Add article</a>
+
+        <table>
+            
+            <th>Cover image</th>
+
+                <th>Title</th>
+                <th>Date</th>
+                <th>Source</th>
+                <th>Body</th>
+                <th></th>
+        {% for article in articles %}
+   
+    <tr>
+        <td> <img src="/media/{{ article.image }}" alt="{{ article.image.url }}" /></td>
+        <td>{{ article.title }}</td>
+        <td>{{ article.date }}</td>
+        <td>{{ article.source }}</td>
+        <td>{{ article.body|truncatechars:50 }}</td>
+        <td>
+            <button class="edit-btn" >
+                <img src="{% static 'icons/edit.svg' %}" alt="edit" class="edit-icon" />
+            </button>
+            <button class="delete-btn">
+                <img src="{% static 'icons/delete.svg' %}" alt="delete" class="delete-icon" />
+            </button>
+        </td>
+    </tr>
+        {% endfor %}
+</table>
+
+</div>
+</div>
+
+{% endblock %}
