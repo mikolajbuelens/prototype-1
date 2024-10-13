@@ -2,18 +2,27 @@
 
 
 {% block title %}
-Details about 
 {{article.title}}{% endblock %} 
 
 {% block content %}
-<h1>Article Overview</h1>
+{% comment %} <h1>Article Overview</h1> {% endcomment %}
+<div class="details-wrapper">
 
-<ul>
-  <li>{{ article.title }}</li>
-  <p>{{ article.author }}</p>
-  <p>{{article.date}}</p>
-  <p>{{ article.source }}</p>
+<div class="details-container">
+  <a class="secondary-btn" href="/article_overview"> &lt Back to overview</a>
+
+  <h1>{{ article.title }}</h1>
+
+
+
+  <img src="/media/{{ article.image }}" alt="{{ article.image.url }}" />
+  <div class="author-date">
+    <small>{{ article.author }}</small> 
+    <small>{{article.date}}</small>
+  </div>
   <p>{{ article.body }}</p>
-</ul>
-<a href="/article_overview">Back to overview</a>
+  <p>Source: {{ article.source }}</p>
+
+</div>
+</div>
 {% endblock %}

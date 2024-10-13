@@ -20,14 +20,15 @@ backdrop-filter: blur(5px);
  <div class="flex-row">
 <div class="signIn">
   <h1>Welcome Back</h1>
-<a class="signInBtn" href="/login">Login</a>
-<a href="/article_overview">Continue without loging in</a>
+<a class="signInBtn" href="/login">SIGN IN</a>
 </div>
 <div class="form-container">
   <h1>Create account</h1>
-<form method="post">{% csrf_token %}
+<form class="sign-up-form" method="post">{% csrf_token %}
     {{form.as_p}}
-  <input type="submit" value="Submit" name="Submit">
+  <input type="submit" value="SIGN UP" name="Submit">
+<a href="/article_overview">Continue without an account</a>
+
 </form> 
 </div>
 </div>

@@ -51,7 +51,7 @@ class loginInterfaceView(LoginView):
 class CreateArticleView(LoginRequiredMixin, CreateView):
     model = Article
     fields = ['title', 'body', 'author', 'image', 'source']
-    login_url = "/login/"
+    login_url = "/login"
     template_name = 'create_article.html'
     redirect_field_name = "redirect_to"
     # success_url = '/article_overview'
@@ -97,7 +97,11 @@ def article_overview(request):
     
     articles = Article.objects.all().values()
     data = Article.objects.filter(author__startswith='R').values()
-    user = request.user
+    if request.user.is_authenticated:
+        user = f'Welcome, {request.user}'
+    else:
+        user = ''
+    
     template = loader.get_template('articles.html')
     context = {
     'articles': articles,

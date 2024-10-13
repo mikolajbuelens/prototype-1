@@ -11,8 +11,11 @@
     {% csrf_token %}
     <h1 class="page-title">Add article</h1>
     {{ form }}
-    <button type="submit">Add article</button>
-    <a href="{% url 'article_overview' %}">Cancel</a>
+    <div class="button-container">
+        <button type="submit">Add article</button>
+    <a  href="{% url 'article_overview' %}">Cancel</a>
+    </div>
+
 </form>
 
 </div>

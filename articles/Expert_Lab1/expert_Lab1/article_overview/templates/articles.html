@@ -9,7 +9,7 @@
   <h1 class="page-title">Article Overview</h1>
 </div>
 
-<h1>Welcome,{{user}}</h1>
+<h1 class="user-welcome">{{user}}</h1>
 {% comment %} <a href="/login">Login</a>
 
 {% comment %} <a href="/">Logout</a> {% endcomment %} {% comment %} {% with
@@ -31,20 +31,10 @@ greetings=1 %}
 <div class="article-wrapper">
   {% for x in articles %}
   <a href="details/{{x.id}}" class="article-container">
-  
+  <div class="article-content">
     <h2>{{x.title}}</h2>
-    {% comment %}
-    <p>{{x.author}}</p>
-    {% endcomment %}
     <p>{{x.date}}</p>
-
-    {% comment %}
-    <p>{{x.source}}</p>
-    {% endcomment %} {% comment %}
-    <p>{{x.body}}</p>
-    {% endcomment %} {% comment %}
-    <p>{{x.image}}</p>
-    {% endcomment %}
+  </div>
     <img src="/media/{{ x.image }}" alt="{{x.image.url}}" />
   </a>
   {% endfor %}
@@ -54,14 +44,7 @@ greetings=1 %}
     <img src="{% static 'icons/add.svg' %}" alt="add" class="add-icon" />
   </a>
 
-  <form
-    action="{% url 'article_overview'%}"
-    method="POST"
-    id="addForm"
-    enctype="multipart/form-data"
-  >
-    {% csrf_token %} {{ form }}
-  </form>
+ 
 </div>
 
 <table border="1">
