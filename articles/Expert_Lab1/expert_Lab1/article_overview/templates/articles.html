@@ -10,18 +10,6 @@
 </div>
 
 <h1 class="user-welcome">{{user}}</h1>
-{% comment %} <a href="/login">Login</a>
-
-{% comment %} <a href="/">Logout</a> {% endcomment %} {% comment %} {% with
-greetings=1 %}
-<h1>{{greetings}}</h1>
-
-{% if greetings == 1 %}
-<h1>Hello</h1>
-{% else %}
-<h1>Bye</h1>
-{% endif %} {% endwith %} {% endcomment %} {% comment %} {% include
-'article_container.html' %} {% endcomment %}
  {% include 'Article_interface.html'%}
 <ul>
   {% for x in articles %}
@@ -47,24 +35,5 @@ greetings=1 %}
  
 </div>
 
-<table border="1">
-  {% comment %}
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Date</th>
-    <th>Source</th>
-    <th>Body</th>
-  </tr>
-  {% endcomment %} {% for x in articles %} {% comment %}
-  <tr>
-    <td>{{x.title}}</td>
-    <td>{{x.author}}</td>
-    <td>{{x.date}}</td>
-    <td>{{x.source}}</td>
-    <td>{{x.body}}</td>
-  </tr>
-  {% endcomment %} {% endfor %}
-</table>
 
 {% endblock %}

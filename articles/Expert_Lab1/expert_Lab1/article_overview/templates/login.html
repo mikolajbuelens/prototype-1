@@ -22,10 +22,6 @@ backdrop-filter: blur(5px);
 
 <form method="post">{% csrf_token %}
     {{form.as_p}}
-  {% comment %} <input type="text" id="username" placeholder="Name" name="username"><br> {% endcomment %}
-  {% comment %} <input type="text" id="email" placeholder='Email' name="email"><br> {% endcomment %}
-  {% comment %} <input type="password" id="password" name="password" placeholder="Password"><br><br>
-  {% endcomment %}
   <input type="submit" value="LOG IN"> 
 </form> 
 </div>
