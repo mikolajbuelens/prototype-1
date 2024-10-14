@@ -35,9 +35,6 @@ Simple backend application made with Pyhton and the Django framework that displa
     
 
 
-## 🔧Installation
-
-
 ## 🔍 Sources
 
 - LinkedIn Learning course used for general help with syntax, structure and info on class based view <br>
