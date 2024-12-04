@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -75,16 +76,26 @@ WSGI_APPLICATION = 'expert_Lab1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'mikolajbuelens',
-        'PASSWORD': '381LFWgv',
-        'HOST': 'ehb-prototype-django.czycqa6co2ou.eu-north-1.rds.amazonaws.com',
-        'PORT:': '5432',
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://expert_lab_prototype_1_django_user:qgvW2fNebUYXWSFTXqDisvAdBbAQOyp6@dpg-ct81kft6l47c73cdd26g-a.frankfurt-postgres.render.com/expert_lab_prototype_1_django',
+        conn_max_age=600
+    )
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'expert_lab_prototype_1_django',
+#         'USER': 'expert_lab_prototype_1_django_user',
+#         'PASSWORD': 'qgvW2fNebUYXWSFTXqDisvAdBbAQOyp6',
+#         'HOST': 'dpg-ct81kft6l47c73cdd26g-a',
+#         'PORT:': '5432',
+#     }
+# }
 
 
 # Password validation
