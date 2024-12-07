@@ -1,0 +1,19 @@
+   
+    {% load static %}	
+
+
+   <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+   <button type="submit" href="/logout/" class="btn logoutBtn">
+<img src="{% static 'icons/logout.svg' %}" alt="logout" class="logoutIcon">
+
+   </button>
+</form>
+
+   <a href="/my_articles"  class="btn logoutBtn myArticles">
+<img src="{% static 'icons/newspaper.svg' %}" alt="logout" class="logoutIcon">
+My Articles
+   </a>
+
+
+
