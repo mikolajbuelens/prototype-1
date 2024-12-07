@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-
+from articles.expert_lab1.expert_lab1.article_overview import urls as article_overview_urls
 
 urlpatterns = [
-    path('', include('article_overview.urls')),
-    path('admin/', admin.site.urls),
+ path('', include('articles.expert_lab1.expert_lab1.article_overview.urls')),
+ path('admin/', admin.site.urls),
 ]
