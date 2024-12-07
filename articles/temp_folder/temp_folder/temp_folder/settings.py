@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'articles.expert_lab1.expert_lab1.urls'
+ROOT_URLCONF = 'articles.expert_lab1.expert_lab1.expert_lab1.urls'
 
 TEMPLATES = [
     {
