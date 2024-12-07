@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'expert_lab1.urls'
+ROOT_URLCONF = 'articles.expert_lab1.expert_lab1.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'expert_lab1.wsgi.application'
+WSGI_APPLICATION = 'articles.expert_lab1.expert_lab1.wsgi.application'
 
 
 # Database
